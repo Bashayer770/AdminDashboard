@@ -1,0 +1,88 @@
+<div class="p-6 bg-white/10 backdrop-blur-md rounded-xl shadow-md text-white">
+  <div class="relative mb-6 animate-fade-slide">
+    <div
+      class="absolute -top-1 left-0 w-full h-10 bg-gradient-to-r from-[#3f423f] to-[#a7aaa8] skew-x-[15deg] opacity-90"
+    ></div>
+    <h2 class="relative z-10 text-2xl font-bold pl-2">Product Management</h2>
+  </div>
+
+  <div class="relative w-full max-w-xl mb-6">
+    <svg
+      class="absolute left-3 top-1/2 -translate-y-1/2 text-white/80 w-6 h-6"
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+    >
+      <path fill="none" d="M0 0h24v24H0z" />
+      <path
+        d="M18.031 16.617l4.283 4.282-1.415 1.415-4.282-4.283A8.96 8.96 0 0111 20c-4.968 
+       0-9-4.032-9-9s4.032-9 9-9 9 4.032 9 9a8.96 8.96 0 01-1.969 5.617zm-2.006-.742A6.977 
+       6.977 0 0018 11c0-3.868-3.133-7-7-7-3.868 0-7 3.132-7 7 0 3.867 3.132 7 7 7a6.977 
+       6.977 0 004.875-1.975l.15-.15z"
+      />
+    </svg>
+    <input
+      type="text"
+      id="search"
+      [(ngModel)]="searchTerm"
+      (input)="onSearch()"
+      placeholder="Search products..."
+      class="w-full h-7 pl-12 pr-4 italic text-white placeholder-white/70 bg-white/10 backdrop-blur-md rounded-xl shadow-lg focus:outline-none focus:ring-2 focus:ring-white/30"
+    />
+
+    <ul
+      *ngIf="suggestions.length"
+      class="absolute z-50 w-full mt-2 bg-gray-500/70 backdrop-blur-md text-white font-semibold rounded-xl shadow-md max-h-60 overflow-auto"
+    >
+      <li
+        *ngFor="let product of suggestions"
+        (click)="selectSuggestion(product.name)"
+        class="px-4 py-2 cursor-pointer hover:bg-white/20 transition"
+      >
+        {{ product.name }} —
+        <span class="text-xs text-white/60">${{ product.price }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <table class="w-full text-left text-sm">
+    <thead>
+      <tr class="border-b border-white/80 text-black/70 text-sm">
+        <th class="p-2 text-[#3f423f] font-bold">ID</th>
+        <th class="p-2 text-[#3f423f]">Name</th>
+        <th class="p-2 text-[#3f423f]">Price ($)</th>
+        <th class="p-2 text-[#3f423f]">Stock</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let product of filteredProducts"
+        class="hover:bg-white/40 transition text-[#5f615f]"
+      >
+        <td class="p-2 font-bold">{{ product.id }}</td>
+        <td class="p-2">{{ product.name }}</td>
+        <td class="p-2">
+          <input
+            type="number"
+            min="0"
+            [(ngModel)]="product.price"
+            (change)="updateProduct(product)"
+            class="border border-white/30 bg-black/10 text-sm rounded px-2 py-1 w-20"
+          />
+        </td>
+        <td class="p-2">
+          <input
+            type="number"
+            min="0"
+            [(ngModel)]="product.stock"
+            (change)="updateProduct(product)"
+            class="border-white/30 bg-black/10 text-sm rounded px-2 py-1 w-20"
+            [ngClass]="{
+              'text-red-500 font-semibold': product.stock === 0
+            }"
+          />
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

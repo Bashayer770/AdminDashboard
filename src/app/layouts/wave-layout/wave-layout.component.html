@@ -1,0 +1,36 @@
+<div
+  class="relative w-full h-screen flex justify-center items-center bg-[#acacac]"
+>
+  <div
+    class="relative w-[97%] h-[97%] bg-white/10 backdrop-blur-md rounded-xl overflow-auto shadow-xl flex flex-col"
+  >
+    <!-- Content Area -->
+    <div class="relative z-10 p-6 flex-1">
+      <ng-content></ng-content>
+    </div>
+
+    <!-- Waves should be outside scrollable content -->
+    <div class="w-full h-[15vh] min-h-[100px] max-h-[150px]">
+      <svg
+        class="w-full h-full blur-md opacity-40"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 24 150 28"
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <path
+            id="gentle-wave"
+            d="M-160 44c30 0 58-18 88-18s 58 18 88 18
+              58-18 88-18 58 18 88 18 v44h-352z"
+          />
+        </defs>
+        <g class="parallax animate-move-forever-slow">
+          <use href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7)" />
+          <use href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use href="#gentle-wave" x="48" y="5" fill="rgba(227,227,227,0.3)" />
+          <use href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
+    </div>
+  </div>
+</div>

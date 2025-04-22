@@ -1,0 +1,45 @@
+<div class="flex">
+  <input id="sidebar-toggle" type="checkbox" class="hidden peer" />
+  <aside
+    class="peer-checked:w-20 w-60 transition-all duration-300 h-screen bg-white/10 backdrop-blur-md text-white rounded-r-xl shadow-xl flex flex-col items-start overflow-hidden"
+  >
+    <label for="sidebar-toggle" class="self-end cursor-pointer mb-6 text-lg">
+      <i class="fas fa-bars"></i>
+    </label>
+
+    <div class="relative w-full mb-6 peer-checked:hidden">
+      <div
+        class="absolute -top-1 -left-2 w-[100%] h-[40px] bg-gradient-to-r from-[#171717] to-[#a7aaa8] opacity-80 skew-x-[15deg] animate-pulse-glow"
+      ></div>
+      <div class="relative z-10 text-2xl font-bold pl-2">Dashboard</div>
+    </div>
+
+    <nav class="space-y-4 w-full">
+      <a
+        routerLink="/dashboard"
+        class="flex items-center gap-2 p-2 rounded-sm hover:bg-white/60 text-gray-600 transition text-lg"
+      >
+        <i class="fas fa-tachometer-alt w-6 text-center"></i>
+        <span class="peer-checked:hidden">Dashboard</span>
+      </a>
+      <a
+        routerLink="/users"
+        class="flex items-center gap-2 p-2 hover:bg-white/60 text-gray-600 transition text-lg"
+      >
+        <i class="fas fa-users w-6 text-center"></i>
+        <span class="peer-checked:hidden">Users</span>
+      </a>
+      <a
+        routerLink="/products"
+        class="flex items-center gap-2 p-2 hover:bg-white/60 text-gray-600 transition text-lg"
+      >
+        <i class="fas fa-box w-6 text-center"></i>
+        <span class="peer-checked:hidden">Products</span>
+      </a>
+    </nav>
+  </aside>
+
+  <main class="flex-1 p-6">
+    <router-outlet></router-outlet>
+  </main>
+</div>
