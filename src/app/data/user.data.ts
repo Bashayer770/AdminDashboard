@@ -102,7 +102,7 @@ export const USERS: User[] = [
     name: 'KRM',
     email: 'KRM@example.com',
     status: 'active',
-    createdAt: '2024-04-14T10:10:00Z',
+    createdAt: new Date().toISOString(),
   },
   {
     id: 15,
