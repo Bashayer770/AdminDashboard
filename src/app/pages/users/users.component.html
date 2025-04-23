@@ -78,7 +78,7 @@
         </td>
         <td class="p-2">
           <button
-            (click)="softDelete(user.id)"
+            (click)="openDeleteModal(user.id)"
             class="text-white hover:text-red-600 transition"
             title="Delete User"
           >
@@ -100,3 +100,9 @@
     </tbody>
   </table>
 </div>
+<app-confirm-modal
+  [show]="showModal"
+  message="Are you sure you want to deactivate this user?"
+  (confirm)="performDelete()"
+  (cancel)="showModal = false"
+></app-confirm-modal>
